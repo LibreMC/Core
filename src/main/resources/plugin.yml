@@ -1,0 +1,17 @@
+name: LibreMC_Core
+version: '1.0-SNAPSHOT'
+main: org.libremc.Core
+api-version: '1.21'
+commands:
+  msg:
+    description: Messages another player
+    usage: /msg <player> <message>
+    aliases: [message, whisper]
+  r:
+    description: Replies
+    usage: /r <message>
+    aliases: [reply]
+  jd:
+    description: Returns the joindate of a player
+    usage: /jd <player>
+    aliases: [joindate]
