@@ -1,0 +1,53 @@
+name: LibreMC_Core
+version: '1.0-SNAPSHOT'
+main: org.libremc.libreMC_Core.Core
+api-version: '1.21'
+commands:
+  msg:
+    description: Messages another player
+    usage: /msg <player> <message>
+    aliases: [message, whisper, w]
+  r:
+    description: Replies
+    usage: /r <message>
+    aliases: [reply]
+  ban:
+    description: Bans a player
+    usage: /ban <player> <duration> <reason>
+    permission: libremc_core.ban
+  warn:
+    description: Warns a player
+    usage: /warn <player> <reason>
+    permission: libremc_core.warn
+  mute:
+    description: Mutes a player
+    usage: /mute <player> <duration> <reason>
+    permission: libremc_core.mute
+  pstat:
+    description: Shows player statistics
+    usage: /pstat <player>/none
+    permission: libremc_core.pstat
+  unban:
+    description: Unbans a player
+    usage: /unban <player>
+    permission: libremc_core.unban
+  unmute:
+    description: Unmutes a player
+    usage: /unmute <player>
+    permission: libremc_core.unmute
+  help:
+    description: Get help
+    usage: /help
+  libremc:
+    description: LibreMC Core
+    usage: /libremc
+    permission: libremc.reload
+  ignore:
+    description: Ignore a player
+    usage: /ignore <player>
+  endportal:
+    description: Shows info about the end portal
+    usage: /endportal
+depend:
+  - dynmap
+
