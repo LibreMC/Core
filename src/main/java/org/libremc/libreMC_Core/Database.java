@@ -1,7 +1,5 @@
 package org.libremc.libreMC_Core;
 
-import org.bukkit.entity.Player;
-
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,10 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
-    private Statement statement;
+    private final Statement statement;
 
     private static final String SQL_INIT_QUERY = """
             CREATE TABLE IF NOT EXISTS punishment_table(
+                punishment_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 uuid TEXT NOT NULL,
                 punishment_type TEXT NOT NULL,
                 date_issued INTEGER NOT NULL,

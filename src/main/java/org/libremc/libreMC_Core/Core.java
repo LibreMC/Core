@@ -32,23 +32,25 @@ public final class Core extends JavaPlugin implements CommandExecutor {
         instance = this;
         getLogger().info("LibreMC Core: plugin started");
 
-        this.getCommand("msg").setExecutor(new Message());
-        this.getCommand("r").setExecutor(new Reply());
-        this.getCommand("ban").setExecutor(new Ban());
-        this.getCommand("unban").setExecutor(new Unban());
-        this.getCommand("warn").setExecutor(new Warn());
-        this.getCommand("mute").setExecutor(new Mute());
-        this.getCommand("pstat").setExecutor(new Pstat());
-        this.getCommand("unmute").setExecutor(new Unmute());
-        this.getCommand("help").setExecutor(new Help());
-        this.getCommand("ignore").setExecutor(new Ignore());
+        this.getCommand("msg").setExecutor(new MessageCommand());
+        this.getCommand("r").setExecutor(new ReplyCommand());
+        this.getCommand("ban").setExecutor(new BanCommand());
+        this.getCommand("unban").setExecutor(new UnbanCommand());
+        this.getCommand("warn").setExecutor(new WarnCommand());
+        this.getCommand("mute").setExecutor(new MuteCommand());
+        this.getCommand("pstat").setExecutor(new PstatCommand());
+        this.getCommand("unmute").setExecutor(new UnmuteCommand());
+        this.getCommand("help").setExecutor(new HelpCommand());
+        this.getCommand("ignore").setExecutor(new IgnoreCommand());
         this.getCommand("libremc").setExecutor(new Libremc());
         this.getCommand("endportal").setExecutor(new EndPortalManager());
+        this.getCommand("map").setExecutor(new MapCommand());
+
         // PlayerJoin/LeaveEvent, join/leave messages
         getServer().getPluginManager().registerEvents(new JoinLeaveListener(), this);
 
         // PlayerChatEvent, checks if players are muted
-        getServer().getPluginManager().registerEvents(new Mute(), this);
+        getServer().getPluginManager().registerEvents(new MuteCommand(), this);
 
         // PlayerMoveEvent, checks if players are beyond or at the world borders
         getServer().getPluginManager().registerEvents(new BorderWraparound(), this);

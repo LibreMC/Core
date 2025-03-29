@@ -48,6 +48,9 @@ commands:
   endportal:
     description: Shows info about the end portal
     usage: /endportal
+  map:
+    description: Sends you the link to the map
+    usage: /map
 depend:
   - dynmap
 

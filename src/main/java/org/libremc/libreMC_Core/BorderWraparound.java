@@ -51,14 +51,12 @@ public class BorderWraparound implements Listener {
             loc.setYaw(90);
             event.setTo(loc);
             event.getPlayer().sendMessage("You have passed the world border");
-            return;
         }else if(x >= EAST_BORDER - 16 * RENDER_DISTANCE){
             loc.setX(-loc.getX() + 5);
             loc.setY(findSuitableY(loc));
             loc.setYaw(270);
             event.setTo(loc);
             event.getPlayer().sendMessage("You have passed the world border");
-            return;
         }
     }
 

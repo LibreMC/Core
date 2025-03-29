@@ -1,14 +1,11 @@
 package org.libremc.libreMC_Core;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Punishment {
     public enum PunishmentType {
@@ -17,48 +14,48 @@ public class Punishment {
         MUTED
     }
 
-    static int getValue(PunishmentType type){
-        return type.ordinal();
-    }
-
-    PunishmentType type;
-    long date;
-    long expiry_date;
-    String reason;
-
     public static void addPunishment(UUID uuid, Punishment.PunishmentType type, long length_ms, String reason) throws SQLException {
         long time = System.currentTimeMillis();
         String query = "INSERT INTO punishment_table (uuid, punishment_type, date_issued, date_of_expiry, reason) VALUES(?, ?, ?, ?, ?);";
 
-        PreparedStatement statement = Core.db.getStatement().getConnection().prepareStatement(query);
-
-        statement.setString(1, uuid.toString());
-        statement.setString(2, type.toString());
-        statement.setLong(3, time);
-        statement.setLong(4, time + length_ms);
-        statement.setString(5, reason);
-
-        statement.execute();
-        //statement.close();
+        try (PreparedStatement statement = Core.db.getStatement().getConnection().prepareStatement(query)) {
+            statement.setString(1, uuid.toString());
+            statement.setString(2, type.toString());
+            statement.setLong(3, time);
+            statement.setLong(4, time + length_ms);
+            statement.setString(5, reason);
+            statement.execute();
+        }
     }
 
     public static ResultSet getPunishments(UUID uuid) throws SQLException {
-        long time = System.currentTimeMillis();
-        String query = "SELECT punishment_type, date_issued, date_of_expiry, reason FROM punishment_table WHERE uuid = ?";
-        PreparedStatement statement = Core.db.getStatement().getConnection().prepareStatement(query);
-        statement.setString(1, uuid.toString());
-        ResultSet set = statement.executeQuery();
-        //statement.close();
+        String query = "SELECT punishment_id, punishment_type, date_issued, date_of_expiry, reason FROM punishment_table WHERE uuid = ?";
+        ResultSet set;
+
+        PreparedStatement statement = Core.db.getStatement().getConnection().prepareStatement(query);        statement.setString(1, uuid.toString());
+        set = statement.executeQuery();
+
         return set;
     }
 
+    // Deletes latest punishment of that type
     public static void removePunishment(UUID uuid, PunishmentType type) throws SQLException {
         String query = "DELETE FROM punishment_table WHERE date_issued = (SELECT MAX(date_issued) FROM punishment_table WHERE uuid = ? AND punishment_type = ?);";
-        PreparedStatement statement = Core.db.getStatement().getConnection().prepareStatement(query);
-        statement.setString(1, uuid.toString());
-        statement.setString(2, type.toString());
-        statement.execute();
-        //statement.close();
+
+        try (PreparedStatement statement = Core.db.getStatement().getConnection().prepareStatement(query)) {
+            statement.setString(1, uuid.toString());
+            statement.setString(2, type.toString());
+            statement.execute();
+        }
+    }
+
+    // Deletes the specific punishment by ID
+    public static void removePunishment(int punishment_id) throws SQLException {
+        String query = "DELETE FROM punishment_table WHERE punishment_id = ?);";
+        try (PreparedStatement statement = Core.db.getStatement().getConnection().prepareStatement(query)) {
+            statement.setLong(1, punishment_id);
+            statement.execute();
+        }
     }
 
     public static boolean isMuted(Player player) throws SQLException {

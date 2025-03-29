@@ -23,9 +23,11 @@ public class CombatTag implements Listener {
     // Maps victim to attacker
     static HashMap<Player, Player> last_attacker = new HashMap<>();
 
+    final public static String MESSAGE = "You are combat-tagged!";
+
     @EventHandler
     public void onDeath(PlayerDeathEvent event){
-        // Untag player so they wont be killed again for leaving after dying
+        // Untag player so they won't be killed again for leaving after dying
         untagPlayer(event.getEntity());
     }
 

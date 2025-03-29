@@ -1,5 +1,7 @@
 package org.libremc.libreMC_Core.extern;
 
+// Credits go to deanveloper - https://github.com/deanveloper/SkullCreator
+
 // Copyright (c) 2017 deanveloper (see LICENSE.md for more info)
 
 import com.mojang.authlib.GameProfile;
