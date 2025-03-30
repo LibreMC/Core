@@ -21,6 +21,15 @@ public class RandomTP implements Listener {
         Resident resident = TownyAPI.getInstance().getResident(event.getPlayer());
         if(!resident.hasTown()){
             // If the player isn't in a town then random teleport him
+
+            if(event.getPlayer().getRespawnLocation() != null){
+                // Check if player has a bed
+                Location loc = event.getPlayer().getRespawnLocation();
+                event.setRespawnLocation(loc);
+                event.getPlayer().teleport(loc);
+                return;
+            }
+
             Location loc = getRandomLocation();
             event.setRespawnLocation(loc);
             event.getPlayer().teleport(loc);
