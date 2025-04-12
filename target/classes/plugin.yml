@@ -51,6 +51,16 @@ commands:
   map:
     description: Sends you the link to the map
     usage: /map
+  sandworld:
+    description: Teleports you to the sand dimension
+    usage: /sandworld
+    permission: libremc.sandworld
+  vote:
+      description: Shows you where to vote
+      usage: /vote
+  removepunishment:
+      description: Removes punishment of a player
+      usage: /removepunishment <player> <id>
 depend:
   - dynmap
 

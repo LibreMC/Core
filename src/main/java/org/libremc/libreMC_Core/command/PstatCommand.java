@@ -76,7 +76,7 @@ public class PstatCommand implements CommandExecutor {
             player = Core.getInstance().getServer().getOfflinePlayer(args[0]);
         }
 
-        if(!player.hasPlayedBefore()){
+        if(!player.hasPlayedBefore() && !player.isOnline()){
             sender.sendMessage("Player has not played before!");
             return true;
         }

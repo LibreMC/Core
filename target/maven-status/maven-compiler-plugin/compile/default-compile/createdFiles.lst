@@ -10,9 +10,11 @@ org/libremc/libreMC_Core/command/IgnoreCommand.class
 org/libremc/libreMC_Core/EndPortalManager$1.class
 org/libremc/libreMC_Core/listener/DynmapListener.class
 org/libremc/libreMC_Core/command/BanCommand.class
+org/libremc/libreMC_Core/command/VoteCommand.class
 org/libremc/libreMC_Core/command/UnmuteCommand.class
 org/libremc/libreMC_Core/listener/TownyListener.class
 org/libremc/libreMC_Core/PlayerHead.class
+org/libremc/libreMC_Core/command/RemovePunishmentCommand.class
 org/libremc/libreMC_Core/command/HelpCommand.class
 org/libremc/libreMC_Core/command/UnbanCommand.class
 org/libremc/libreMC_Core/Libremc.class

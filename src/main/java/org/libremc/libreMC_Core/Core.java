@@ -45,6 +45,10 @@ public final class Core extends JavaPlugin implements CommandExecutor {
         this.getCommand("libremc").setExecutor(new Libremc());
         this.getCommand("endportal").setExecutor(new EndPortalManager());
         this.getCommand("map").setExecutor(new MapCommand());
+        this.getCommand("sandworld").setExecutor(new SandworldCommand());
+        this.getCommand("vote").setExecutor(new VoteCommand());
+        this.getCommand("removepunishment").setExecutor(new RemovePunishmentCommand());
+
 
         // PlayerJoin/LeaveEvent, join/leave messages
         getServer().getPluginManager().registerEvents(new JoinLeaveListener(), this);

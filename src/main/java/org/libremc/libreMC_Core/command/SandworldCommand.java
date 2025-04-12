@@ -14,12 +14,11 @@ public class SandworldCommand implements CommandExecutor {
 
     public static World loadSandWorld(){
         WorldCreator creator = new WorldCreator("sandworld");
-        creator.type(WorldType.FLAT);
         creator = creator.generateStructures(false);
 
         World world = Bukkit.createWorld(creator);
 
-        world.getWorldBorder().setSize(4096);
+        world.getWorldBorder().setSize(2048);
         world.getWorldBorder().setCenter(0, 0);
 
         // Disable any entities spawning
@@ -27,7 +26,7 @@ public class SandworldCommand implements CommandExecutor {
         world.setSpawnLimit(SpawnCategory.ANIMAL, 0);
         world.setSpawnLimit(SpawnCategory.MONSTER, 0);
 
-        world.loadChunk(0, 0);
+        world.setDifficulty(Difficulty.PEACEFUL);
 
         return world;
     }
@@ -36,11 +35,14 @@ public class SandworldCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
-        if(!(commandSender instanceof Player)){
-            return false;
+        if(!commandSender.hasPermission("libremc_core.sandworld") && !commandSender.isOp()){
+            commandSender.sendMessage("Yeah you cant do that pal");
+            return true;
         }
 
-        Player player = (Player)commandSender;
+        if(!(commandSender instanceof Player player)){
+            return false;
+        }
 
         if(CombatTag.isTagged(player)){
             player.sendMessage(CombatTag.MESSAGE);
