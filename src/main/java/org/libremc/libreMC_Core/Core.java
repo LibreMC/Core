@@ -1,9 +1,14 @@
 package org.libremc.libreMC_Core;
 
+import com.palmergames.bukkit.towny.TownyAPI;
+import com.palmergames.bukkit.towny.exceptions.TownyException;
+import com.palmergames.bukkit.towny.object.Resident;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.dynmap.DynmapCommonAPIListener;
 import org.libremc.libreMC_Core.command.*;
@@ -92,6 +97,44 @@ public final class Core extends JavaPlugin implements CommandExecutor {
             throw new RuntimeException(e);
         }
 
+        getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+            @Override
+            public void run() {
+                for (Player player : getServer().getOnlinePlayers()) {
+                    Resident resident = TownyAPI.getInstance().getResident(player);
+                    if (resident == null) {
+                        continue;
+                    }
+
+                    String listName = player.getDisplayName();
+                    if (resident.hasNation() && resident.hasTown()) {
+                        try {
+                            listName = "["+
+                                    ChatColor.GOLD+
+                                    resident.getNation().getName()+
+                                    ChatColor.WHITE+
+                                    "|"+
+                                    ChatColor.DARK_AQUA+
+                                    resident.getTown().getName()+
+                                    ChatColor.WHITE+
+                                    "] "+
+                                    listName;
+                        } catch (TownyException ignored) {}
+                    } else if (!resident.hasNation() && resident.hasTown()) {
+                        try {
+                            listName = "["+
+                                    ChatColor.DARK_AQUA+
+                                    resident.getTown().getName()+
+                                    ChatColor.WHITE+
+                                    "] "+
+                                    listName;
+                        } catch (TownyException ignored) {}
+                    }
+
+                    player.setPlayerListName(listName);
+                }
+            }
+        }, 0, 20*5);
     }
 
     @Override
