@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.SpawnCategory;
 import org.libremc.libreMC_Core.CombatTag;
+import org.libremc.libreMC_Core.extern.PlayerStorageManager;
 
 public class SandworldCommand implements CommandExecutor {
 
@@ -49,8 +50,16 @@ public class SandworldCommand implements CommandExecutor {
             return true;
         }
 
-        Location loc = new Location(sandworld, 0, sandworld.getHighestBlockYAt(0, 0), 0);
+        if(player.getWorld().getName().equalsIgnoreCase("sandworld")){
+            player.sendMessage("Teleporting to overworld");
+            player.teleport(PlayerStorageManager.getPlayerReturnLocation(player));
+            return true;
+        }
 
+        PlayerStorageManager.setPlayerReturnLocation(player , player.getLocation());
+
+        player.sendMessage("Teleporting to sandworld (to go back, use /sandworld again)");
+        Location loc = new Location(sandworld, 0, sandworld.getHighestBlockYAt(0, 0) + 1, 0);
         player.teleport(loc);
 
         return true;

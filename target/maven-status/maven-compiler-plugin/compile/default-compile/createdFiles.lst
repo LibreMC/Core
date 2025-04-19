@@ -26,4 +26,5 @@ org/libremc/libreMC_Core/command/ReplyCommand.class
 org/libremc/libreMC_Core/command/SandworldCommand.class
 org/libremc/libreMC_Core/CombatTag.class
 org/libremc/libreMC_Core/EndPortalManager.class
+org/libremc/libreMC_Core/extern/PlayerStorageManager.class
 org/libremc/libreMC_Core/command/MuteCommand.class

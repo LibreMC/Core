@@ -21,6 +21,7 @@
 /home/zeno/IdeaProjects/LibreMCCore/src/main/java/org/libremc/libreMC_Core/command/UnmuteCommand.java
 /home/zeno/IdeaProjects/LibreMCCore/src/main/java/org/libremc/libreMC_Core/command/VoteCommand.java
 /home/zeno/IdeaProjects/LibreMCCore/src/main/java/org/libremc/libreMC_Core/command/WarnCommand.java
+/home/zeno/IdeaProjects/LibreMCCore/src/main/java/org/libremc/libreMC_Core/extern/PlayerStorageManager.java
 /home/zeno/IdeaProjects/LibreMCCore/src/main/java/org/libremc/libreMC_Core/extern/SkullCreator.java
 /home/zeno/IdeaProjects/LibreMCCore/src/main/java/org/libremc/libreMC_Core/listener/DynmapListener.java
 /home/zeno/IdeaProjects/LibreMCCore/src/main/java/org/libremc/libreMC_Core/listener/JoinLeaveListener.java
