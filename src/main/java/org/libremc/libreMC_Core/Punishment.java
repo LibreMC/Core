@@ -51,7 +51,7 @@ public class Punishment {
 
     // Deletes the specific punishment by ID
     public static void removePunishment(int punishment_id) throws SQLException {
-        String query = "DELETE FROM punishment_table WHERE punishment_id = ?);";
+        String query = "DELETE FROM punishment_table WHERE punishment_id = ?;";
         try (PreparedStatement statement = Core.db.getStatement().getConnection().prepareStatement(query)) {
             statement.setLong(1, punishment_id);
             statement.execute();
