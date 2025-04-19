@@ -2,10 +2,12 @@ package org.libremc.libreMC_Core.command;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
+import org.bukkit.persistence.PersistentDataType;
 import org.libremc.libreMC_Core.Punishment;
 
 import java.sql.SQLException;
@@ -52,7 +54,12 @@ public class MessageCommand implements CommandExecutor {
                     message = message.concat(args[j] + " ");
                 }
 
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[" + sender.getName() + "] to [You] -> " + message);
+                if (!((Player) sender).getPersistentDataContainer().getOrDefault(
+                        new NamespacedKey("echochamber", "echochambered"),
+                        PersistentDataType.BOOLEAN, false)
+                ) {
+                    player.sendMessage(ChatColor.LIGHT_PURPLE + "[" + sender.getName() + "] to [You] -> " + message);
+                }
                 sender.sendMessage(ChatColor.LIGHT_PURPLE + "[You] to [" + player.getName() +  "] -> " + message);
 
                 player_reply.put(player.getName(), sender.getName());
