@@ -19,7 +19,7 @@ public class SandworldCommand implements CommandExecutor {
 
         World world = Bukkit.createWorld(creator);
 
-        world.getWorldBorder().setSize(2048);
+        world.getWorldBorder().setSize(500);
         world.getWorldBorder().setCenter(0, 0);
 
         // Disable any entities spawning
