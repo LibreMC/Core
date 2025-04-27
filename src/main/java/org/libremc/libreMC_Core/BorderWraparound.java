@@ -24,9 +24,16 @@ public class BorderWraparound implements Listener {
         double z = loc.getZ();
 
         // Check if player moved past the north/south border
+        double x1 = x - (EAST_BORDER - 16 * RENDER_DISTANCE) * Math.signum(x);
+
         if(z <= NORTH_BORDER + 16 * RENDER_DISTANCE){
             // Invert signage (south/north movement works different from east/west) and move him a little bit back
-            loc.setX(-loc.getX());
+
+            if(x == 0){
+                loc.setX(EAST_BORDER - 16 * RENDER_DISTANCE);
+            }
+
+            loc.setX(x1);
             loc.setZ(loc.getZ() + 5);
             loc.setY(findSuitableY(loc));
             event.setTo(loc);
@@ -34,7 +41,11 @@ public class BorderWraparound implements Listener {
             event.getPlayer().sendMessage("You have passed the world border");
             return;
         }else if(z >= SOUTH_BORDER - 16 * RENDER_DISTANCE){
-            loc.setX(-loc.getX());
+            if(x == 0){
+                loc.setX(WEST_BORDER + 16 * RENDER_DISTANCE);
+            }
+
+            loc.setX(x1);
             loc.setZ(loc.getZ() - 5);
             loc.setY(findSuitableY(loc));
             loc.setYaw(180);

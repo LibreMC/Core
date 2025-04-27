@@ -56,11 +56,14 @@ commands:
     usage: /sandworld
     permission: libremc.sandworld
   vote:
-      description: Shows you where to vote
-      usage: /vote
+    description: Shows you where to vote
+    usage: /vote
   removepunishment:
-      description: Removes punishment of a player
-      usage: /removepunishment <player> <id>
+    description: Removes punishment of a player
+    usage: /removepunishment <player> <id>
+  rules:
+    description: Views the rules of the server
+    usage: /rules
 depend:
   - dynmap
 
