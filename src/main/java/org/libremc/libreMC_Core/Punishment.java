@@ -32,7 +32,8 @@ public class Punishment {
         String query = "SELECT punishment_id, punishment_type, date_issued, date_of_expiry, reason FROM punishment_table WHERE uuid = ?";
         ResultSet set;
 
-        PreparedStatement statement = Core.db.getStatement().getConnection().prepareStatement(query);        statement.setString(1, uuid.toString());
+        PreparedStatement statement = Core.db.getStatement().getConnection().prepareStatement(query);
+        statement.setString(1, uuid.toString());
         set = statement.executeQuery();
 
         return set;
