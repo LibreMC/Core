@@ -16,6 +16,12 @@ public class JoinLeaveListener implements Listener {
         }else{
             RandomTP.randomTeleportPlayer(player);
             event.setJoinMessage(ChatColor.YELLOW + "Welcome to the server, " + player.getName() + "!");
+            player.sendMessage("Welcome to the LibreMC!");
+            player.sendMessage("Read our short beginner's guide: https://libremc.net/help.html");
+            player.sendMessage("Check out the live map: https://map.libremc.net");
+            player.sendMessage("Join our discord: https://discord.gg/cCuC4SmeGx");
+            player.sendMessage("Read our rules: https://libremc.net/rules.html");
+            player.sendMessage("If you need any help at all, you can reach out on the Discord!");
         }
 
         // Set the players TAB list

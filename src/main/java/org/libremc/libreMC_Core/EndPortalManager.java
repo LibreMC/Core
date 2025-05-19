@@ -138,7 +138,7 @@ public class EndPortalManager implements Listener, CommandExecutor {
         while(new Location(loc.getWorld(), loc.getX(), loc.getY() - 1, loc.getZ()).getBlock().isLiquid()){
             loc = new Location(Bukkit.getServer().getWorld("world"), x, 0, z);
             x = rand.nextInt(-24000, 24000);
-            z = rand.nextInt(12000, 11000);
+            z = rand.nextInt(11000, 12000);
             loc.setY(BorderWraparound.findSuitableY(loc));
         }
 

@@ -50,6 +50,11 @@ public class SandworldCommand implements CommandExecutor {
             return true;
         }
 
+        if(player.getWorld().getName().equalsIgnoreCase("world_nether") || player.getWorld().getName().equalsIgnoreCase("world_the_end")){
+            player.sendMessage("You can only teleport to sandworld from the overworld!");
+            return true;
+        }
+
         if(player.getWorld().getName().equalsIgnoreCase("sandworld")){
             player.sendMessage("Teleporting to overworld");
             player.teleport(PlayerStorageManager.getPlayerReturnLocation(player));

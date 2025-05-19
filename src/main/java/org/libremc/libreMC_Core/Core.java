@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.dynmap.DynmapCommonAPIListener;
 import org.libremc.libreMC_Core.command.*;
+import org.libremc.libreMC_Core.listener.BlockBreakListener;
 import org.libremc.libreMC_Core.listener.DynmapListener;
 import org.libremc.libreMC_Core.listener.JoinLeaveListener;
 import org.libremc.libreMC_Core.listener.TownyListener;
@@ -71,6 +72,9 @@ public final class Core extends JavaPlugin implements CommandExecutor {
 
         // TownTogglePVPEvent; PlotTogglePvpEvent; TownPreClaimEvent, various checks regarding claiming and PVP
         getServer().getPluginManager().registerEvents(new TownyListener(), this);
+
+        // BlockBreakEvent, used for giving out Calcite drops and what not
+        getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
 
 
         FileConfiguration file = Core.getInstance().getConfig();
