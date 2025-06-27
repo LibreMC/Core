@@ -29,7 +29,6 @@ public class ReplyCommand implements CommandExecutor {
 
         Player player = Bukkit.getServer().getPlayer(hashmap.get(sender.getName()));
 
-
         if(player == null){
             sender.sendMessage(label + ": player is no longer online");
             return true;

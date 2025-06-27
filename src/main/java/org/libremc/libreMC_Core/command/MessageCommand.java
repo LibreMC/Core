@@ -44,23 +44,24 @@ public class MessageCommand implements CommandExecutor {
         for (Player player : players) {
             if (player.getName().equals(args[0])) {
 
-                if(IgnoreCommand.isIgnored(player, sender.getName())){
-                    sender.sendMessage("You have been ignored by this person");
-                    return true;
-                }
-
                 String message = "";
                 for (int j = 1; j < args.length; j++) {
                     message = message.concat(args[j] + " ");
                 }
 
+                if(IgnoreCommand.isIgnored(player, sender.getName())){
+                    sender.sendMessage(ChatColor.LIGHT_PURPLE + "[You] -> [" + player.getName() +  "]: " + message);
+                    return true;
+                }
+
+
                 if (!((Player) sender).getPersistentDataContainer().getOrDefault(
                         new NamespacedKey("echochamber", "echochambered"),
                         PersistentDataType.BOOLEAN, false)
                 ) {
-                    player.sendMessage(ChatColor.LIGHT_PURPLE + "[" + sender.getName() + "] to [You] -> " + message);
+                    player.sendMessage(ChatColor.LIGHT_PURPLE + "[" + sender.getName() + "] -> [You]: " + message);
                 }
-                sender.sendMessage(ChatColor.LIGHT_PURPLE + "[You] to [" + player.getName() +  "] -> " + message);
+                sender.sendMessage(ChatColor.LIGHT_PURPLE + "[You] -> [" + player.getName() +  "]: " + message);
 
                 player_reply.put(player.getName(), sender.getName());
 

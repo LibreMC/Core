@@ -50,6 +50,7 @@ public final class Core extends JavaPlugin implements CommandExecutor {
         this.getCommand("vote").setExecutor(new VoteCommand());
         this.getCommand("removepunishment").setExecutor(new RemovePunishmentCommand());
         this.getCommand("rules").setExecutor(new RulesCommand());
+        this.getCommand("ignorejoinleave").setExecutor(new IgnoreJoinLeaveCommand());
 
 
         // PlayerJoin/LeaveEvent, join/leave messages
@@ -89,6 +90,8 @@ public final class Core extends JavaPlugin implements CommandExecutor {
         DynmapCommonAPIListener.register(new DynmapListener());
 
         startEndPortalManager();
+
+        Broadcasts.startBroadcasts();
 
         try {
             db = new Database(database_file);

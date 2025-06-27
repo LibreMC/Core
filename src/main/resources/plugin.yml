@@ -64,6 +64,9 @@ commands:
   rules:
     description: Views the rules of the server
     usage: /rules
+  ignorejoinleave:
+    description: Ignore join leave
+    usage: /rules
 depend:
   - dynmap
 

@@ -35,7 +35,7 @@ public class TownyListener implements Listener {
 
     @EventHandler
     public static void onPlotChangeType(PlotPreChangeTypeEvent event){
-        if(event.getNewType().equals(TownBlockType.ARENA)){
+        if(event.getNewType().equals(TownBlockType.ARENA) && event.getTownBlock().isHomeBlock()){
             event.setCancelMessage("You can't set your homeblock to an arena");
             event.setCancelled(true);
         }

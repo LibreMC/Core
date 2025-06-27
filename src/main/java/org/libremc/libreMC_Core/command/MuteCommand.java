@@ -12,6 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.libremc.libreMC_Core.Core;
 import org.libremc.libreMC_Core.Punishment;
+import org.libremc.libreMC_Core.events.MuteEvent;
+import org.libremc.libreMC_Core.events.WarnEvent;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -80,9 +82,16 @@ public class MuteCommand implements CommandExecutor, Listener {
             throw new RuntimeException(e);
         }
 
-        sender.sendMessage("Muted player '" + player.getName() + "' for " + Punishment.formatDuration(mute_duration_millis) + ". Reason: " + reason);
+        String length_formatted = Punishment.formatDuration(mute_duration_millis);
 
-        Bukkit.broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + player.getName() + " has been muted for " + Punishment.formatDuration(mute_duration_millis) + ". Reason: " + reason + ChatColor.RESET);
+        sender.sendMessage("Muted player '" + player.getName() + "' for " + length_formatted + ". Reason: " + reason);
+
+        Bukkit.broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + player.getName() + " has been muted for " + length_formatted + ". Reason: " + reason + ChatColor.RESET);
+
+        String punisher = (sender instanceof Player _player) ? _player.getName() : "Console";
+
+        MuteEvent event = new MuteEvent(punisher, player.getName(), reason, length_formatted);
+        Bukkit.getPluginManager().callEvent(event);
 
         return true;
     }

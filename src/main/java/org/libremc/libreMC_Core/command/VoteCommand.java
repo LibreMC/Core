@@ -12,7 +12,7 @@ public class VoteCommand implements CommandExecutor {
         commandSender.sendMessage(ChatColor.BOLD + "Planetminecraft: " + ChatColor.LIGHT_PURPLE + "https://www.planetminecraft.com/server/libremc-geopolitical-towny-earth/vote/" + ChatColor.RESET);
         commandSender.sendMessage(ChatColor.BOLD + "minecraft-mp: " + ChatColor.LIGHT_PURPLE + "https://minecraft-mp.com/server/342430/vote/" + ChatColor.RESET);
         commandSender.sendMessage(ChatColor.BOLD + "minecraftservers.org: " + ChatColor.LIGHT_PURPLE + "https://minecraftservers.org/vote/673441" + ChatColor.RESET);
-
+        commandSender.sendMessage(ChatColor.BOLD + "minecraft.buzz: " + ChatColor.LIGHT_PURPLE + "https://minecraft.buzz/vote/14810" + ChatColor.RESET);
         return true;
     }
 }

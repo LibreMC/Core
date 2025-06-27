@@ -6,8 +6,11 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.libremc.libreMC_Core.Core;
 import org.libremc.libreMC_Core.Punishment;
+import org.libremc.libreMC_Core.events.BanEvent;
+import org.libremc.libreMC_Core.events.WarnEvent;
 
 import java.sql.SQLException;
 
@@ -43,6 +46,11 @@ public class WarnCommand implements CommandExecutor {
         }
 
         Bukkit.broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + player.getName() + " has been warned. Reason: " + reason + ChatColor.RESET);
+
+        String punisher = (sender instanceof Player _player) ? _player.getName() : "Console";
+
+        WarnEvent event = new WarnEvent(punisher, player.getName(), reason);
+        Bukkit.getPluginManager().callEvent(event);
 
 
         return true;

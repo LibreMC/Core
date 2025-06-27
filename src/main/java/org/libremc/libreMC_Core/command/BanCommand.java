@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.libremc.libreMC_Core.Core;
 import org.libremc.libreMC_Core.Punishment;
+import org.libremc.libreMC_Core.events.BanEvent;
 
 import java.sql.SQLException;
 import java.time.Duration;
@@ -67,8 +68,16 @@ public class BanCommand implements CommandExecutor {
             throw new RuntimeException(e);
         }
 
-        sender.sendMessage("Banned player '" + player.getName() + "' for " + Punishment.formatDuration(ban_duration_millis) + ". Reason: " + reason);
+        String duration_formatted = Punishment.formatDuration(ban_duration_millis);
+
+        sender.sendMessage("Banned player '" + player.getName() + "' for " + duration_formatted + ". Reason: " + reason);
         Bukkit.broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + player.getName() + " has been banned for " + Punishment.formatDuration(ban_duration_millis) + ". Reason: " + reason + ChatColor.RESET);
+
+        String punisher = (sender instanceof Player _player) ? _player.getName() : "Console";
+
+        BanEvent event = new BanEvent(punisher, player.getName(), reason, duration_formatted);
+        Bukkit.getPluginManager().callEvent(event);
+
 
         return true;
     }

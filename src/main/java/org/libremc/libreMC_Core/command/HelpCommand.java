@@ -21,6 +21,8 @@ public class HelpCommand implements CommandExecutor {
         sender.sendMessage("/msg <player> <message> - Privately messages a player");
         sender.sendMessage("/r <message> - Replies to the player previously messaging you");
         sender.sendMessage("/vote - Get all the places where you can vote");
+        sender.sendMessage("/sandworld - Visit the world of sand");
+
         return true;
     }
 }

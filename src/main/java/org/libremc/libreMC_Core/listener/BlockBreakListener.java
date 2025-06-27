@@ -1,5 +1,7 @@
 package org.libremc.libreMC_Core.listener;
 
+import com.palmergames.bukkit.towny.Towny;
+import com.palmergames.bukkit.towny.event.actions.TownyDestroyEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
@@ -10,7 +12,7 @@ import java.util.Random;
 
 public class BlockBreakListener implements Listener {
     @EventHandler
-    void onBlockBreak(BlockBreakEvent event){
+    void onBlockBreak(TownyDestroyEvent event){
         if(event.getBlock().getType() != Material.STONE){
             return;
         }
@@ -21,11 +23,11 @@ public class BlockBreakListener implements Listener {
 
         Random random = new Random();
 
-        if(random.nextDouble() < 0.10){
+        if(random.nextDouble() < 0.04){
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.CALCITE, 8));
         }
 
-        if(random.nextDouble() < 0.10){
+        if(random.nextDouble() < 0.04){
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.AMETHYST_SHARD, 8));
         }
 
